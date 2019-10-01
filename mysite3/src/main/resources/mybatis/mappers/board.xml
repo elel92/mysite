@@ -44,26 +44,42 @@
 	
 	<select id="searchList" parameterType="String" resultType="boardvo">
 		<![CDATA[
-			select b.no, b.title, b.contents, b.hit, b.reg_date, b.g_no, b.o_no, b.depth, b.status, b.user_no, u.name from board b, user u where b.user_no = u.no and (b.title like #{kwd} or b.contents like #{kwd}) order by b.g_no desc, b.depth, b.o_no asc
+			select b.no, b.title, b.contents, b.hit, b.reg_date, b.g_no, b.o_no, b.depth, b.status, b.user_no, u.name
+			from board b, user u
+			where b.user_no = u.no
+			  and (b.title like #{kwd} or b.contents like #{kwd})
+			order by b.g_no desc, b.depth, b.o_no asc
 		]]>
 	</select>
 	
 	<select id="searchList_page" parameterType="map" resultType="boardvo">
 		<![CDATA[
-			select b.no, b.title, b.contents, b.hit, b.reg_date, b.g_no, b.o_no, b.depth, b.status, b.user_no, u.name from board b, user u where b.user_no = u.no and (b.title like #{kwd} or b.contents like #{kwd}) order by b.g_no desc, b.depth, b.o_no asc limit #{page_no}, 10
+			select b.no, b.title, b.contents, b.hit, b.reg_date, b.g_no, b.o_no, b.depth, b.status, b.user_no, u.name
+			from board b, user u
+			where b.user_no = u.no
+			  and (b.title like #{kwd} or b.contents like #{kwd})
+			order by b.g_no desc, b.depth, b.o_no asc
+			limit #{page_no}, 10
 		]]>
 	
 	</select>
 	
 	<select id="getList" resultType="boardvo">
 		<![CDATA[
-			select b.no, b.title, b.contents, b.hit, b.reg_date, b.g_no, b.o_no, b.depth, b.status, b.user_no, u.name from board b, user u where b.user_no = u.no order by b.g_no desc, b.o_no asc
+			select b.no, b.title, b.contents, b.hit, b.reg_date, b.g_no, b.o_no, b.depth, b.status, b.user_no, u.name
+			from board b, user u
+			where b.user_no = u.no
+			order by b.g_no desc, b.o_no asc
 		]]>
 	</select>
 	
 	<select id="limit_getList" parameterType="int" resultType="boardvo">
 		<![CDATA[
-			select b.no, b.title, b.contents, b.hit, b.reg_date, b.g_no, b.o_no, b.depth, b.status, b.user_no, u.name from board b, user u where b.user_no = u.no order by b.g_no desc, b.o_no asc limit #{page_no}, 10
+			select b.no, b.title, b.contents, b.hit, b.reg_date, b.g_no, b.o_no, b.depth, b.status, b.user_no, u.name
+			from board b, user u
+			where b.user_no = u.no
+			order by b.g_no desc, b.o_no asc
+			limit #{page_no}, 10
 		]]>
 	
 	</select>

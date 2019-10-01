@@ -21,4 +21,8 @@
 		</if>
 		<![CDATA[gender = #{gender} where no = #{no}]]>
 	</update>
+	
+	<select id="getByEmail" parameterType="String" resultType="userVo">
+		<![CDATA[select no, email from user where email = #{email}]]>
+	</select>
 </mapper>

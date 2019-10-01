@@ -23,4 +23,9 @@ public class UserService {
 	public void update(UserVo vo) {
 		userDao.update(vo.getNo(), vo.getName(), vo.getGender(), vo.getPassword());
 	}
+
+	public boolean existUser(String email) {
+		
+		return userDao.get(email) != null;
+	}
 }
