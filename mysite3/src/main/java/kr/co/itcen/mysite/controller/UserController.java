@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import kr.co.itcen.mysite.security.Auth;
+import kr.co.itcen.mysite.security.AuthUser;
 import kr.co.itcen.mysite.service.UserService;
 import kr.co.itcen.mysite.vo.UserVo;
 
@@ -51,8 +53,12 @@ public class UserController {
 		return "user/login";
 	}
 	
+	@Auth("USER")
 	@RequestMapping(value="/update", method=RequestMethod.GET)
-	public String update() {
+	public String update(@AuthUser UserVo authUser, Model model) {
+		authUser = userService.getUser(authUser.getNo());
+		model.addAttribute("userVo", authUser);
+		
 		return "user/update";
 	}
 	
@@ -66,6 +72,7 @@ public class UserController {
 		}
 		
 		vo.setNo(authUser.getNo());
+		vo.setEmail(authUser.getEmail());
 		userService.update(vo);
 		
 		session.setAttribute("authUser", vo);

@@ -28,4 +28,11 @@ public class UserService {
 		
 		return userDao.get(email) != null;
 	}
+
+	public UserVo getUser(int no) {
+		UserVo vo = new UserVo();
+		vo.setNo(no);
+		
+		return userDao.get(vo);
+	}
 }
